@@ -12,7 +12,7 @@ class AutosrobadoController extends Controller
      */
     public function index()
     {
-        //
+        return view('autosrobados/indexAuto');
     }
 
     /**
@@ -20,7 +20,7 @@ class AutosrobadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('autosrobados/createAuto');
     }
 
     /**
@@ -28,7 +28,13 @@ class AutosrobadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $auto = new Autosrobado();
+        $auto->marca = $request->input('marca');
+        $auto->modelo = $request->input('modelo');
+        $auto->fecha_robo = $request->input('fecha');
+        $auto->estatus = $request->input('estatus');
+        $auto->save();
+        return "Auto registrado";
     }
 
     /**
