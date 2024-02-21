@@ -10,14 +10,14 @@
 
     <!-- <a href="/informacion">Información</a> -->
     <section>
-        <form method="POST" action="/autosrobados"><!-- /recibe-contacto -->
+        <form method="POST" action="{{route('autosrobados.store')}}"><!-- /recibe-contacto -->
             @csrf 
             <!-- Este es un meto de hace un input oculto con token de validacion de origen de peticion -->
             <!-- Este hace un token para que podmaso pasar el perimetro de seguridad -->
-            <label for="marca">Marca:</label><input name='marca' type="text">
-            <label for="modelo">Modelo:</label><input name='modelo'  type="text">
+            <label for="marca">Marca:</label><input name='marca' type="text" required>
+            <label for="modelo">Modelo:</label><input name='modelo'  type="text" required>
 
-            <label for="fecha">Feca de robo:</label><input  name='fecha' type="date"><br>
+            <label for="fecha">Feca de robo:</label><input  name='fecha' type="date" required><br>
      
             <label for="estatus">Estatus:</label>
             <select name="estatus" id="estatus">
@@ -29,6 +29,8 @@
             <button type="submit" value="enviar" id="submit">Enviar</button>
         </form>
     </section>
+    <br>
+    <a href="{{route('autosrobados.index')}}">Regresar</a>
     
 </body>
 </html>

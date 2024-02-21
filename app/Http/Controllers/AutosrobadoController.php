@@ -12,7 +12,9 @@ class AutosrobadoController extends Controller
      */
     public function index()
     {
-        return view('autosrobados/indexAuto');
+
+        $autosrobado = Autosrobado::all();
+        return view('autosrobados.indexAuto', compact('autosrobado'));
     }
 
     /**
@@ -20,7 +22,7 @@ class AutosrobadoController extends Controller
      */
     public function create()
     {
-        return view('autosrobados/createAuto');
+        return view('autosrobados.createAuto');
     }
 
     /**
@@ -28,13 +30,23 @@ class AutosrobadoController extends Controller
      */
     public function store(Request $request)
     {
+
+        // validacion 
+
+        $request->validate([
+            'marca' => 'required|string|min:2|max:12',
+            'modelo' => 'required',
+            'fecha' => 'required|date',
+            'estatus' => 'required'
+        ]);
+
         $auto = new Autosrobado();
-        $auto->marca = $request->input('marca');
-        $auto->modelo = $request->input('modelo');
-        $auto->fecha_robo = $request->input('fecha');
-        $auto->estatus = $request->input('estatus');
+        $auto->marca = $request->marca;
+        $auto->modelo = $request->modelo;
+        $auto->fecha_robo = $request->fecha;
+        $auto->estatus = $request->estatus;
         $auto->save();
-        return "Auto registrado";
+        return redirect()->route('autosrobados.index');
     }
 
     /**
@@ -42,7 +54,7 @@ class AutosrobadoController extends Controller
      */
     public function show(Autosrobado $autosrobado)
     {
-        //
+        return view('autosrobados.showAuto', compact('autosrobado'));
     }
 
     /**
@@ -50,7 +62,7 @@ class AutosrobadoController extends Controller
      */
     public function edit(Autosrobado $autosrobado)
     {
-        //
+        return view('autosrobados.editAuto', compact('autosrobado'));
     }
 
     /**
@@ -58,7 +70,13 @@ class AutosrobadoController extends Controller
      */
     public function update(Request $request, Autosrobado $autosrobado)
     {
-        //
+        $autosrobado->marca = $request->marca;
+        $autosrobado->modelo = $request->modelo;
+        $autosrobado->fecha_robo = $request->fecha;
+        $autosrobado->estatus = $request->estatus;
+        $autosrobado->save();
+
+        return redirect()->route('autosrobados.show', $autosrobado);
     }
 
     /**
@@ -66,6 +84,7 @@ class AutosrobadoController extends Controller
      */
     public function destroy(Autosrobado $autosrobado)
     {
-        //
+        $autosrobado->delete();
+        return redirect()->route('autosrobados.index');
     }
 }
