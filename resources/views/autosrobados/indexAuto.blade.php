@@ -23,7 +23,7 @@
             <tr>
                 <td>{{$auto->Marca}}</td>
                 <td>{{$auto->Fecha_robo}}</td>
-                <td><a href="{{route('autosrobados.show', $auto->id)}}">Ver detalles</a></td> 
+                <td><a href="{{route('autosrobados.show', $auto)}}">Ver detalles</a></td> 
             </tr>
             @endforeach
         </tbody>
