@@ -70,6 +70,14 @@ class AutosrobadoController extends Controller
      */
     public function update(Request $request, Autosrobado $autosrobado)
     {
+        
+        $request->validate([
+            'marca' => 'required|string|min:2|max:12',
+            'modelo' => 'required',
+            'fecha' => 'required|date',
+            'estatus' => 'required'
+        ]);
+
         $autosrobado->marca = $request->marca;
         $autosrobado->modelo = $request->modelo;
         $autosrobado->fecha_robo = $request->fecha;

@@ -17,9 +17,18 @@
             @method('PATCH')
             <!-- Input oculto para poder hacer el edit en la base de datos -->
             <label for="marca">Marca:</label><input name='marca' type="text" value="{{$autosrobado->Marca }}">
+            @error('marca')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <label for="modelo">Modelo:</label><input name='modelo'  type="text" value="{{$autosrobado->Modelo }}">
+            @error('modelo')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
 
             <label for="fecha">Feca de robo:</label><input  name='fecha' type="date" value="{{$autosrobado->Fecha_robo}}"><br>
+            @error('fecha')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
      
             <label for="estatus">Estatus:</label>
             <select name="estatus" id="estatus">
