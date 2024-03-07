@@ -43,3 +43,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+// Route::get('demo', function () {
+//     return view('landing');
+// })->name('landing');
