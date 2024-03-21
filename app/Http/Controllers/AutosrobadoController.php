@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class AutosrobadoController extends Controller
 {
+
+
+
+    // Public function __costruct(){
+    //     $this->middelware('auth'); 
+        
+    // }
     /**
      * Display a listing of the resource.
      */

@@ -1,10 +1,10 @@
 <x-a-layout>
     <body>
-        <h1>Comprueba el status de tu auto</h1>
+        <h1 class="display-3 text-center text-info">Comprueba el status de tu auto</h1>
 
         <!-- <a href="autosrobados/indexAuto">Registrar auto robado</a> -->
 
-        <table border="1">
+        <table class="table table-striped table-dark">
             <thead>
                 <tr>
                     <th>Marca</th>
@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{$auto->Marca}}</td>
                     <td>{{$auto->Fecha_robo}}</td>
-                    <td><a href="{{route('autosrobados.show', $auto)}}">Ver detalles</a></td> 
+                    <td><a href="{{route('autosrobados.show', $auto)}}" class="btn btn-info">Ver detalles</a></td> 
                 </tr>
                 @endforeach
             </tbody>

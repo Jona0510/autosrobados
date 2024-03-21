@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\AutosrobadoController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::get('/', function () {
 // });
 
 Route::resource('autosrobados', AutosrobadoController::class);
+
 
 Route::middleware([
     'auth:sanctum',
