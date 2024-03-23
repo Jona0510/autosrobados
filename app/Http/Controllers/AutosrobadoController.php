@@ -9,9 +9,11 @@ class AutosrobadoController extends Controller
 {
 
 
-
-    // Public function __costruct(){
-    //     $this->middelware('auth'); 
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    
+    }
         
     // }
     /**
