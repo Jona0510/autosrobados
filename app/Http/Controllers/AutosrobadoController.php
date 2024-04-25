@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Autosrobado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AutosrobadoController extends Controller
 {
@@ -22,7 +23,8 @@ class AutosrobadoController extends Controller
     public function index()
     {
 
-        $autosrobado = Autosrobado::all();
+        #$autosrobado = Autosrobado::all();
+        $autosrobado = Autosrobado::where('user_id', Auth::id())->get();
         return view('autosrobados.indexAuto', compact('autosrobado'));
     }
 
@@ -48,12 +50,21 @@ class AutosrobadoController extends Controller
             'fecha' => 'required|date',
             'estatus' => 'required'
         ]);
+        
+
+
+
+        #$request->merge(['user_id' => Auth::id()]);
+        #dd($request->all());
+        #Autosrobado::create($request->all());
+        
 
         $auto = new Autosrobado();
         $auto->marca = $request->marca;
         $auto->modelo = $request->modelo;
         $auto->fecha_robo = $request->fecha;
         $auto->estatus = $request->estatus;
+        $auto->user_id = Auth::id();
         $auto->save();
         return redirect()->route('autosrobados.index');
     }
@@ -87,8 +98,12 @@ class AutosrobadoController extends Controller
             'estatus' => 'required'
         ]);
 
+        #Se sustituye por el Id de la tabla que pertenece
         $autosrobado->marca = $request->marca;
         $autosrobado->modelo = $request->modelo;
+        #Ubicacion ID->Donde fue robado
+
+        #Propias de esta tabla
         $autosrobado->fecha_robo = $request->fecha;
         $autosrobado->estatus = $request->estatus;
         $autosrobado->save();

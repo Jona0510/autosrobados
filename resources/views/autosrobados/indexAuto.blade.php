@@ -7,6 +7,7 @@
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
+                    <th>Policia</th>
                     <th>Marca</th>
                     <th>Fecha de robo</th>
                     <th>Detalles</th>
@@ -15,6 +16,7 @@
             <tbody>
                 @foreach ($autosrobado as $auto)
                 <tr>
+                    <td>{{$auto->user->name}}</td>
                     <td>{{$auto->Marca}}</td>
                     <td>{{$auto->Fecha_robo}}</td>
                     <td><a href="{{route('autosrobados.show', $auto)}}" class="btn btn-info">Ver detalles</a></td> 
