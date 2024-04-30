@@ -6,10 +6,16 @@
             <li class="list-group-item list-group-item-action list-group-item-primary">Modelo: {{$autosrobado->Modelo}}</li>
             <li class="list-group-item list-group-item-action list-group-item-warning">Fecha de robo: {{$autosrobado->Fecha_robo}}</li>
             <li class="list-group-item list-group-item-action list-group-item-danger" >Estatus: {{$autosrobado->Estatus}}</li>
+            
+            <li class="list-group-item list-group-item-action list-group-item-danger" >Ubicacion de robo:
+                @foreach($autosrobado->locations as $ubicacion)
+                    {{ $ubicacion->Ubicaciones }}
+                @endforeach 
+            </li>
         </ul>
         
 
-        <a class="btn btn-xl btn-success" href="{{ route('autosrobados.ubicacion', $autosrobado) }}">Añadir ubicacion</a>
+        
 
         <div class="text-center">
             <a href="{{route('autosrobados.index')}} " class="btn btn-success">Regresar</a>

@@ -69,7 +69,7 @@ class AutosrobadoController extends Controller
         $auto->estatus = $request->estatus;
         $auto->user_id = Auth::id();
         $auto->save();
-        return redirect()->route('autosrobados.show',$auto->id); //Edite aqui lo del index, deber redireccionar al index pero el otro 
+        return redirect()->route('autosrobados.ubicacion',$auto->id); //Edite aqui lo del index, deber redireccionar al index pero el otro 
 
         
     }
