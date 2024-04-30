@@ -7,7 +7,10 @@
             <li class="list-group-item list-group-item-action list-group-item-warning">Fecha de robo: {{$autosrobado->Fecha_robo}}</li>
             <li class="list-group-item list-group-item-action list-group-item-danger" >Estatus: {{$autosrobado->Estatus}}</li>
         </ul>
-        <br><br>
+        
+
+        <a class="btn btn-xl btn-success" href="{{ route('autosrobados.ubicacion', $autosrobado) }}">Añadir ubicacion</a>
+
         <div class="text-center">
             <a href="{{route('autosrobados.index')}} " class="btn btn-success">Regresar</a>
             <a href="{{route('autosrobados.edit', $autosrobado->id)}}"  class="btn btn-warning" >Editar</a><br><br>

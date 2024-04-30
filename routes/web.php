@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AutosrobadoController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,19 @@ Route::get('/', function () {
 
 Route::resource('autosrobados', AutosrobadoController::class);
 
+
+
+Route::get('autosrobados/{id}/ubicacion', [AutosrobadoController::class, 'showP'])
+->name('autosrobados.ubicacion');
+
+Route::post('autosrobados/{id}/addUbiacion', [AutosrobadoController::class, 'addUbicacion'])
+    ->name('autosrobados.seleccionar-ubicacion');
+
+
+Route::resource('locations', LocationController::class);	
+
+// Route::get('materia/{materia}/inscribir-alumnos', [LocationController::class, 'inscribirAlumnos'])
+//     ->name('materia.inscribir-alumnos');
 
 Route::middleware([
     'auth:sanctum',

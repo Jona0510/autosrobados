@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Autosrobado;
 use App\Models\location;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+
+        $autosrobados = Autosrobado::all();
+        $location = location::all();
+        return view('locations.index', compact('location', 'autosrobados'));
     }
 
     /**
@@ -36,7 +40,7 @@ class LocationController extends Controller
      */
     public function show(location $location)
     {
-        //
+        return view('locations.show', compact('location'));
     }
 
     /**

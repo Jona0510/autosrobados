@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Autosrobado;
+use App\Models\location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +34,8 @@ class AutosrobadoController extends Controller
      */
     public function create()
     {
-        return view('autosrobados.createAuto');
+        $location = location::all();
+        return view('autosrobados.createAuto', compact('location'));
     }
 
     /**
@@ -41,6 +43,7 @@ class AutosrobadoController extends Controller
      */
     public function store(Request $request)
     {
+        
 
         // validacion 
 
@@ -66,7 +69,9 @@ class AutosrobadoController extends Controller
         $auto->estatus = $request->estatus;
         $auto->user_id = Auth::id();
         $auto->save();
-        return redirect()->route('autosrobados.index');
+        return redirect()->route('autosrobados.show',$auto->id); //Edite aqui lo del index, deber redireccionar al index pero el otro 
+
+        
     }
 
     /**
@@ -74,7 +79,8 @@ class AutosrobadoController extends Controller
      */
     public function show(Autosrobado $autosrobado)
     {
-        return view('autosrobados.showAuto', compact('autosrobado'));
+        $ubicaciones = location::all(); 
+        return view('autosrobados.showAuto', compact('autosrobado'), compact('ubicaciones'));
     }
 
     /**
@@ -117,6 +123,23 @@ class AutosrobadoController extends Controller
     public function destroy(Autosrobado $autosrobado)
     {
         $autosrobado->delete();
+        return redirect()->route('autosrobados.index');
+    }
+
+    public function showP($id)
+    {
+        $auto = Autosrobado::findOrFail($id);
+        $ubicaciones = location::all(); 
+        
+        return view('autosrobados.ubicacion', compact('auto'), compact('ubicaciones'));
+    }
+
+    public function addUbicacion(Request $request,$id)
+    {
+
+        $autosrobado = Autosrobado::findOrFail($id);
+        //dd( $autosrobado->id);
+        $autosrobado->locations()->attach($request->ubicacion_id);
         return redirect()->route('autosrobados.index');
     }
 }

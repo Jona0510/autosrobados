@@ -20,6 +20,6 @@ class Autosrobado extends Model
 
     public function locations()
     {
-        return $this->belongsToMany(Location::class);
+        return $this->belongsToMany(location::class);
     }
 }

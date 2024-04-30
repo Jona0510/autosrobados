@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\auto_location;
+use App\Models\autosrobado_location;
 use Illuminate\Http\Request;
 
-class AutoLocationController extends Controller
+class AutosrobadoLocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class AutoLocationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(auto_location $auto_location)
+    public function show(autosrobado_location $autosrobado_location)
     {
         //
     }
@@ -42,7 +42,7 @@ class AutoLocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(auto_location $auto_location)
+    public function edit(autosrobado_location $autosrobado_location)
     {
         //
     }
@@ -50,7 +50,7 @@ class AutoLocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, auto_location $auto_location)
+    public function update(Request $request, autosrobado_location $autosrobado_location)
     {
         //
     }
@@ -58,7 +58,7 @@ class AutoLocationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(auto_location $auto_location)
+    public function destroy(autosrobado_location $autosrobado_location)
     {
         //
     }

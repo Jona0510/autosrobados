@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('auto_locations', function (Blueprint $table) {
-            $table->foreignId('autosrobados_id')->constrained()->onDelete('cascade');
-            $table->foreignId('locations_id')->constrained()->onDelete('cascade');
+        Schema::create('autosrobado_location', function (Blueprint $table) {
+            $table->foreignId('autosrobado_id')->constrained()->onDelete('cascade');
+            $table->foreignId('location_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('auto_locations');
+        Schema::dropIfExists('autosrobado_location');
     }
 };
