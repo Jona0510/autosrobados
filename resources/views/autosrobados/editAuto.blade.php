@@ -43,6 +43,9 @@
                 <h3>Archivos</h3>
                 <label for="archivo">Carga de Archivo:</label>
                 <input type="file" name="archivo" id="archivo">
+                @error('archivo')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <div class="text-center">
                     <button type="submit" value="enviar" id="submit" class="btn btn-warning"  >Enviar</button>
                 </div>

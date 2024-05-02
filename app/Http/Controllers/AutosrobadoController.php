@@ -122,10 +122,20 @@ class AutosrobadoController extends Controller
             'estatus' => 'required'
         ]);
 
-        //$ruta = $request->archivo->store('', 'public');
+        if ($request->file('archivo')->isValid()) {
 
-        //Storage::delete($autosrobado->archivo);
-        //$autosrobado->archivo->ubicacion = $ruta;
+            foreach ($autosrobado->archivos as $archivo) {
+
+                Storage::delete($archivo->ubicacion); 
+                
+                $ruta = $request->archivo->store('', 'public'); 
+                $archivo->ubicacion = $ruta;
+                $archivo->nombre_original = $request->archivo->getClientOriginalName();
+                $archivo->mime = $request->archivo->getClientMimeType();
+                $archivo->autosrobado_id = $autosrobado->id;
+                $archivo->save();
+            }
+        }
 
 
         $autosrobado->marca = $request->marca;
