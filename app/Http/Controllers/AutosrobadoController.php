@@ -13,7 +13,7 @@ class AutosrobadoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['porubicacion','viewlocation']);
     
     }
         
@@ -50,26 +50,25 @@ class AutosrobadoController extends Controller
         $request->validate([
             'marca' => 'required|string|min:2|max:12',
             'modelo' => 'required',
-            'fecha' => 'required|date',
+            'fecha_robo' => 'required|date',
             'estatus' => 'required'
         ]);
         
 
 
 
-        #$request->merge(['user_id' => Auth::id()]);
-        #dd($request->all());
-        #Autosrobado::create($request->all());
+        $request->merge(['user_id' => Auth::id()]);
+        $autorobado = Autosrobado::create($request->all());
         
 
-        $auto = new Autosrobado();
-        $auto->marca = $request->marca;
-        $auto->modelo = $request->modelo;
-        $auto->fecha_robo = $request->fecha;
-        $auto->estatus = $request->estatus;
-        $auto->user_id = Auth::id();
-        $auto->save();
-        return redirect()->route('autosrobados.ubicacion',$auto->id); //Edite aqui lo del index, deber redireccionar al index pero el otro 
+        // $auto = new Autosrobado();
+        // $auto->marca = $request->marca;
+        // $auto->modelo = $request->modelo;
+        // $auto->fecha_robo = $request->fecha;
+        // $auto->estatus = $request->estatus;
+        // $auto->user_id = Auth::id();
+        // $auto->save();
+        return redirect()->route('autosrobados.ubicacion',$autorobado->id); //Edite aqui lo del index, deber redireccionar al index pero el otro 
 
         
     }
@@ -104,12 +103,8 @@ class AutosrobadoController extends Controller
             'estatus' => 'required'
         ]);
 
-        #Se sustituye por el Id de la tabla que pertenece
         $autosrobado->marca = $request->marca;
         $autosrobado->modelo = $request->modelo;
-        #Ubicacion ID->Donde fue robado
-
-        #Propias de esta tabla
         $autosrobado->fecha_robo = $request->fecha;
         $autosrobado->estatus = $request->estatus;
         $autosrobado->save();
@@ -138,8 +133,32 @@ class AutosrobadoController extends Controller
     {
 
         $autosrobado = Autosrobado::findOrFail($id);
-        //dd( $autosrobado->id);
+    
         $autosrobado->locations()->attach($request->ubicacion_id);
         return redirect()->route('autosrobados.index');
+    }
+
+    public function porubicacion()
+    {
+        $ubicaciones = location::all();
+        return view('autosrobados.verubicacion',compact('ubicaciones'));
+    }
+
+    public function viewlocation(Request $request)
+    {
+
+        $autosrobado = Autosrobado::whereHas('locations', function($query) use ($request){
+            $query->where('locations.id', $request->ubicacion);
+        })->get(); //Modificar esta query building
+    
+    
+        return view('autosrobados.autoubicacion', compact('autosrobado'));
+    }
+
+    public function showdetalles(Autosrobado $autosrobado)
+    {
+        $ubicaciones = location::all(); 
+        //dd($autosrobado->all());
+        return view('autosrobados.detalles', compact('autosrobado'), compact('ubicaciones'));
     }
 }

@@ -10,7 +10,11 @@ class Autosrobado extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'marca',
+        'modelo', 
+        'fecha_robo',
+        'estatus',
+        'user_id'
     ];
 
     public function user()

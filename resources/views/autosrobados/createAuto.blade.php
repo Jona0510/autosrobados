@@ -5,7 +5,7 @@
 
         <!-- <a href="/informacion">Información</a> -->
         <section>
-            <form method="POST" action="{{route('autosrobados.store')}}"><!-- /recibe-contacto -->
+            <form method="POST" action="{{route('autosrobados.store')}}" enctype="multipart/form-data"><!-- /recibe-contacto -->
             <div class="col-auto">
                 @csrf 
                 <!-- Este es un meto de hace un input oculto con token de validacion de origen de peticion -->
@@ -22,7 +22,7 @@
                 @enderror
             <div class="col-auto">
             </div>
-                <label for="fecha">Feca de robo:</label><input value="{{old('fecha')}}" class="form-control mb-2" style="width: 30%" name='fecha' type="date" ><br>
+                <label for="fecha_robo">Feca de robo:</label><input value="{{old('fecha_robo')}}" class="form-control mb-2" style="width: 30%" name='fecha_robo' type="date" ><br>
                 @error('fecha')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

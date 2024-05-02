@@ -38,14 +38,23 @@ Route::resource('autosrobados', AutosrobadoController::class);
 
 
 
-Route::get('autosrobados/{id}/ubicacion', [AutosrobadoController::class, 'showP'])
+Route::get('autosrobados/{autosrobado}/ubicacion', [AutosrobadoController::class, 'showP'])
 ->name('autosrobados.ubicacion');
 
-Route::post('autosrobados/{id}/addUbiacion', [AutosrobadoController::class, 'addUbicacion'])
+Route::post('autosrobados/{autosrobado}/addUbiacion', [AutosrobadoController::class, 'addUbicacion'])
     ->name('autosrobados.seleccionar-ubicacion');
 
+Route::get('autosrobados/ver/ubicaciones', [AutosrobadoController::class, 'porubicacion'])
+    ->name('autosrobados.ver');
 
-Route::resource('locations', LocationController::class);	
+Route::get('autosrobados/ver/ubicaciones/autos', [AutosrobadoController::class, 'viewlocation'])
+    ->name('autosrobados.ver-ubicacion');
+
+Route::get('autosrobados/detalles/{autosrobado}', [AutosrobadoController::class, 'showdetalles'])
+    ->name('autosrobados.detalles');
+ 
+
+//Route::resource('locations', LocationController::class);	
 
 // Route::get('materia/{materia}/inscribir-alumnos', [LocationController::class, 'inscribirAlumnos'])
 //     ->name('materia.inscribir-alumnos');
