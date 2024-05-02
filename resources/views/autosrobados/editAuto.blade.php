@@ -40,9 +40,12 @@
                 </div>
 
                 <hr>
-                <h3>Archivos</h3>
-                <label for="archivo">Carga de Archivo:</label>
-                <input type="file" name="archivo" id="archivo">
+                <h3>Selecciona la imagen del auto robado</h3>
+
+                <div class="mb-3">
+                    <label for="archivo" class="form-label">Carga de Archivo:</label>
+                    <input class="form-control " type="file" name="archivo" id="archivo" style="width: 30%; height: 20%">
+                </div>
                 @error('archivo')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

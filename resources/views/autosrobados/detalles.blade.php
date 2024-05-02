@@ -23,7 +23,7 @@
 
 
 
-        <h3>Archivos</h3>
+        <h3 style="display: block; margin: 20px auto;">Descarga la imagen</h3>
         <ul>
             @foreach ($autosrobado->archivos as $archivo)
                 <li>
@@ -34,7 +34,8 @@
             @endforeach
         </ul>
 
-        <h3>Auto Robado:</h3> <img src="{{ \Storage::url($autosrobado->archivos->first()->ubicacion) }}" width="550px">
+        <h3 class="display-5 text-center">Auto Robado:</h3> <img src="{{ \Storage::url($autosrobado->archivos->first()->ubicacion) }}" width="500px" style="display: block; margin: 5px auto;border-radius: 10px" >
+        
         <div class="text-center">
             <button type="submit" class="btn btn-success">Regresar</button>
         </div>

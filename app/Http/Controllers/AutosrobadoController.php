@@ -53,7 +53,9 @@ class AutosrobadoController extends Controller
             'marca' => 'required|string|min:2|max:12',
             'modelo' => 'required',
             'fecha_robo' => 'required|date',
-            'estatus' => 'required'
+            'estatus' => 'required',
+            'archivo' => 'required|file|mimes:pdf,jpg,jpeg,png'
+
         ]);
         
 
@@ -71,7 +73,7 @@ class AutosrobadoController extends Controller
         // $auto->user_id = Auth::id();
         // $auto->save();
 
-        dd($request->all());
+    
         
         if ($request->file('archivo')->isValid()) {
             $ruta = $request->archivo->store('', 'public');
@@ -119,7 +121,8 @@ class AutosrobadoController extends Controller
             'marca' => 'required|string|min:2|max:12',
             'modelo' => 'required',
             'fecha' => 'required|date',
-            'estatus' => 'required'
+            'estatus' => 'required',
+            'archivo' => 'required|file|mimes:pdf,jpg,jpeg,png'
         ]);
 
         if ($request->file('archivo')->isValid()) {
@@ -127,7 +130,7 @@ class AutosrobadoController extends Controller
             foreach ($autosrobado->archivos as $archivo) {
 
                 Storage::delete($archivo->ubicacion); 
-                
+
                 $ruta = $request->archivo->store('', 'public'); 
                 $archivo->ubicacion = $ruta;
                 $archivo->nombre_original = $request->archivo->getClientOriginalName();
