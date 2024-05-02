@@ -26,4 +26,9 @@ class Autosrobado extends Model
     {
         return $this->belongsToMany(location::class);
     }
+
+    public function archivos()
+    {
+        return $this->hasMany(archivo::class);
+    }   
 }

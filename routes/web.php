@@ -53,6 +53,8 @@ Route::get('autosrobados/ver/ubicaciones/autos', [AutosrobadoController::class, 
 Route::get('autosrobados/detalles/{autosrobado}', [AutosrobadoController::class, 'showdetalles'])
     ->name('autosrobados.detalles');
  
+Route::get('descargar/{archivo}', [AutosrobadoController::class, 'descarga'])
+    ->name('comentario.descarga');
 
 //Route::resource('locations', LocationController::class);	
 

@@ -4,7 +4,7 @@
 
         <!-- <a href="/informacion">Información</a> -->
         <section>
-            <form method="POST" action="{{ route('autosrobados.update', $autosrobado) }}"><!-- /recibe-contacto -->
+            <form method="POST" action="{{ route('autosrobados.update', $autosrobado) }}" enctype="multipart/form-data"><!-- /recibe-contacto -->
                 <div class="col-auto">
                     @csrf 
                     <!-- Este es un meto de hace un input oculto con token de validacion de origen de peticion -->
@@ -38,6 +38,11 @@
                         <option value="Sin_reporte" @selected($autosrobado->Estatus == 'Sin_reporte')>Sin reporte</option>
                     </select>
                 </div>
+
+                <hr>
+                <h3>Archivos</h3>
+                <label for="archivo">Carga de Archivo:</label>
+                <input type="file" name="archivo" id="archivo">
                 <div class="text-center">
                     <button type="submit" value="enviar" id="submit" class="btn btn-warning"  >Enviar</button>
                 </div>
