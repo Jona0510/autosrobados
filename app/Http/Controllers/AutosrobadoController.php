@@ -17,7 +17,7 @@ class AutosrobadoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['porubicacion','viewlocation']);
+        $this->middleware('auth')->except(['porubicacion','viewlocation','showdetalles']);
     
     }
         
@@ -191,10 +191,8 @@ class AutosrobadoController extends Controller
     {
 
         $autosrobado = Autosrobado::whereHas('locations', function($query) use ($request){
-            $query->where('locations.id', $request->ubicacion);
-        })->get(); //Modificar esta query building
-    
-    
+            $query->where('id', $request->ubicacion);
+        })->get(); 
         return view('autosrobados.autoubicacion', compact('autosrobado'));
     }
 

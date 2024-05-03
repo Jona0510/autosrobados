@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>Autos robados</title>
+    <link rel="icon" href="{{asset('coche.png')}}" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
