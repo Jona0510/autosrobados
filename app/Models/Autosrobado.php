@@ -14,6 +14,7 @@ class Autosrobado extends Model
         'modelo', 
         'fecha_robo',
         'estatus',
+        'correo',
         'user_id'
     ];
 

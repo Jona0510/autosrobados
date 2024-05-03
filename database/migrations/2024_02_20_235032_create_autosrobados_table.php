@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('Modelo');
             $table->date('Fecha_robo');
             $table->string('Estatus');
+            $table->string('correo');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
             $table->timestamps();

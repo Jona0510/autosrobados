@@ -20,22 +20,27 @@
                 @error('modelo')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            <div class="col-auto">
             </div>
+            <div class="col-auto">
                 <label for="fecha_robo">Feca de robo:</label><input value="{{old('fecha_robo')}}" class="form-control mb-2" style="width: 30%" name='fecha_robo' type="date" ><br>
                 @error('fecha')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            <div class="col-auto">
             </div> 
             <div class="col-auto">
                 <label for="estatus">Estatus:</label>
-                <select name="estatus" id="estatus" class="form-control mb-2 " style="width: 30%">
+                <select name="estatus" id="estatus" class="form-control mb-2 " style="width: 30% ">
                     <option value="Robada" @selected(old('estatus') == 'Robada')>Robada</option>
                     <option value="Recuperada" @selected(old('estatus') == 'Recuperada')>Recuperada</option>
                     <option value="Sin_reporte" @selected(old('estatus') == 'Sin_reporte')>Sin reporte</option>
                 </select>
                 @error('estatus')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-auto">
+                <label for="correo" style=" margin: 15px">Correo de contacto:</label><input value="{{old('correo')}}" class="form-control mb-2" style="width: 30%; margin: 15px" name='correo' type="maile" ><br>
+                @error('correo')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegistroAuto;
 use App\Models\archivo;
 use App\Models\Autosrobado;
 use App\Models\location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class AutosrobadoController extends Controller
@@ -54,6 +56,7 @@ class AutosrobadoController extends Controller
             'modelo' => 'required',
             'fecha_robo' => 'required|date',
             'estatus' => 'required',
+            'correo' => 'required|email',
             'archivo' => 'required|file|mimes:pdf,jpg,jpeg,png'
 
         ]);
@@ -171,8 +174,10 @@ class AutosrobadoController extends Controller
     {
 
         $autosrobado = Autosrobado::findOrFail($id);
-    
+        
         $autosrobado->locations()->attach($request->ubicacion_id);
+
+        Mail::to($autosrobado->correo)->send(new RegistroAuto($autosrobado));
         return redirect()->route('autosrobados.index');
     }
 
