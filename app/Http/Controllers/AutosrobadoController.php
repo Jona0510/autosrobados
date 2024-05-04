@@ -99,6 +99,7 @@ class AutosrobadoController extends Controller
      */
     public function show(Autosrobado $autosrobado)
     {
+        $this->authorize('editor', $autosrobado);
         $ubicaciones = location::all(); 
         return view('autosrobados.showAuto', compact('autosrobado'), compact('ubicaciones'));
     }
@@ -108,6 +109,7 @@ class AutosrobadoController extends Controller
      */
     public function edit(Autosrobado $autosrobado)
     {
+        $this->authorize('editor', $autosrobado);
         return view('autosrobados.editAuto', compact('autosrobado'));
     }
 
@@ -119,7 +121,8 @@ class AutosrobadoController extends Controller
 
         //dd($request->all());
         //dd($request->file('archivo')->isValid());
-        
+        $this->authorize('editor', $autosrobado);
+
         $request->validate([
             'marca' => 'required|string|min:2|max:12',
             'modelo' => 'required',
@@ -158,6 +161,7 @@ class AutosrobadoController extends Controller
      */
     public function destroy(Autosrobado $autosrobado)
     {
+        $this->authorize('editor', $autosrobado);
         $autosrobado->delete();
         return redirect()->route('autosrobados.index');
     }
