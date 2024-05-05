@@ -13,5 +13,7 @@ class archivo extends Model
     {
         return $this->belongsTo(Autosrobado::class);
     }
+
+    //Buscar la carga ansiosa de la relacion
 }
 

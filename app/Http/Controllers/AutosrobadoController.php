@@ -8,6 +8,7 @@ use App\Models\Autosrobado;
 use App\Models\location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,9 +28,16 @@ class AutosrobadoController extends Controller
      */
     public function index()
     {
+        //DB::enableQueryLog();
 
-        #$autosrobado = Autosrobado::all();
-        $autosrobado = Autosrobado::where('user_id', Auth::id())->get();
+        $autosrobado = Autosrobado::where('user_id', Auth::id())
+        ->with('user:id,name')
+        ->get();
+
+        // foreach ($autosrobado as $auto) {
+        //     $auto->user->name;
+        // }
+        // dd(DB::getQueryLog());
         return view('autosrobados.indexAuto', compact('autosrobado'));
     }
 
@@ -38,8 +46,7 @@ class AutosrobadoController extends Controller
      */
     public function create()
     {
-        $location = location::all();
-        return view('autosrobados.createAuto', compact('location'));
+        return view('autosrobados.createAuto');
     }
 
     /**
@@ -99,10 +106,16 @@ class AutosrobadoController extends Controller
      */
     public function show(Autosrobado $autosrobado)
     {
-        
+        //DB::enableQueryLog();
+
         $this->authorize('view', $autosrobado);
-        $ubicaciones = location::all(); 
-        return view('autosrobados.showAuto', compact('autosrobado'), compact('ubicaciones'));
+        $autosrobado->load('locations');
+
+        // foreach ($autosrobado->locations as $auto) {
+        //     $auto->Ubicaciones;
+        // }
+        // dd(DB::getQueryLog());
+        return view('autosrobados.showAuto', compact('autosrobado'));
     }
 
     /**
@@ -171,9 +184,11 @@ class AutosrobadoController extends Controller
     {
         $auto = Autosrobado::findOrFail($id);
         $ubicaciones = location::all(); 
+        
+
         $this->authorize('update', $auto);
         
-        return view('autosrobados.ubicacion', compact('auto'), compact('ubicaciones'));
+        return view('autosrobados.ubicacion', compact('auto','ubicaciones'));
     }
 
     public function addUbicacion(Request $request,$id)
@@ -184,7 +199,6 @@ class AutosrobadoController extends Controller
 
         $autosrobado = Autosrobado::findOrFail($id);
         
-        
         $autosrobado->locations()->attach($request->ubicacion_id);
 
         Mail::to($autosrobado->correo)->send(new RegistroAuto($autosrobado));
@@ -193,6 +207,7 @@ class AutosrobadoController extends Controller
 
     public function porubicacion()
     {
+
         $ubicaciones = location::all();
         return view('autosrobados.verubicacion',compact('ubicaciones'));
     }
@@ -208,9 +223,10 @@ class AutosrobadoController extends Controller
 
     public function showdetalles(Autosrobado $autosrobado)
     {
-        $ubicaciones = location::all(); 
+        $autosrobado->load('locations');
+        $autosrobado->load('archivos');
         //dd($autosrobado->all());
-        return view('autosrobados.detalles', compact('autosrobado'), compact('ubicaciones'));
+        return view('autosrobados.detalles', compact('autosrobado'));
     }
 
     public function descarga(archivo $archivo)

@@ -65,4 +65,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Autosrobado::class);
     }
+
+    //Buscar la carga ansiosa de la relacion
 }

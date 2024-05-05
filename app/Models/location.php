@@ -14,5 +14,7 @@ class location extends Model
     {
         return $this->belongsToMany(Autosrobado::class);
     }   
+
+    //Buscar la carga ansiosa de la relacion
 }
 
