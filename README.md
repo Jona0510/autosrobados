@@ -9,6 +9,6 @@
 
 ## Puntos considerados como esxtras.
 
-- [Se agregó el apartado de actualizzzacion de las imagenes que el usuario publica.]
+- [Se agregó el apartado de actualización de las imágenes que el usuario pública.]
 - [Se agregó la verificación del correo del usuario que se registra al sistema.]
 
