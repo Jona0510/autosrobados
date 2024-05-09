@@ -64,7 +64,7 @@ class AutosrobadoController extends Controller
             'fecha_robo' => 'required|date',
             'estatus' => 'required',
             'correo' => 'required|email',
-            'archivo' => 'required|file|mimes:pdf,jpg,jpeg,png'
+            //'archivo' => 'required|file|mimes:pdf,jpg,jpeg,png'
 
         ]);
         
@@ -85,16 +85,16 @@ class AutosrobadoController extends Controller
 
     
         
-        if ($request->file('archivo')->isValid()) {
-            $ruta = $request->archivo->store('', 'public');
+        // if ($request->file('archivo')->isValid()) {
+        //     $ruta = $request->archivo->store('', 'public');
 
-            $archivo = new archivo();
-            $archivo->ubicacion = $ruta;
-            $archivo->nombre_original = $request->archivo->getClientOriginalName();
-            $archivo->mime = $request->archivo->getClientMimeType();
-            $archivo->autosrobado_id = $autorobado->id;
-            $archivo->save();
-        }
+        //     $archivo = new archivo();
+        //     $archivo->ubicacion = $ruta;
+        //     $archivo->nombre_original = $request->archivo->getClientOriginalName();
+        //     $archivo->mime = $request->archivo->getClientMimeType();
+        //     $archivo->autosrobado_id = $autorobado->id;
+        //     $archivo->save();
+        // }
 
         return redirect()->route('autosrobados.ubicacion',$autorobado->id); //Edite aqui lo del index, deber redireccionar al index pero el otro 
 
