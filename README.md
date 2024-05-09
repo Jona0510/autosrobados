@@ -9,6 +9,6 @@
 
 ## Puntos considerados como extras.
 
-- [Se agregó el apartado de actualización de las imágenes que el usuario pública.]
-- [Se agregó la verificación del correo del usuario que se registra al sistema.]
+- [Se agregó el apartado de actualización de las imágenes que el usuario pública.] -- 20 (opcional/extra)
+- [Se agregó la verificación del correo del usuario que se registra al sistema.] -- 10 (opcional/extra)
 
