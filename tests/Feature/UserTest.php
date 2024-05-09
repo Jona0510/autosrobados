@@ -10,6 +10,8 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\Feature\factory;
 
+
+
 class UserTest extends TestCase
 {
     /**
@@ -17,6 +19,7 @@ class UserTest extends TestCase
      */
 
     use RefreshDatabase;
+
 
     public function test_example(): void
     {
@@ -101,6 +104,44 @@ class UserTest extends TestCase
             'estatus'  => 'The estatus field is required.',
             'correo' => 'The correo field is required.',
         ]);
+    }
+
+    public function test_peticion_eliminacion_registro(){
+
+        
+
+        $user = User::factory()->create();
+
+        // Crea un registro en la base de datos que se eliminará
+        $registro = Autosrobado::create([
+            'marca' => 'Mazda',
+            'modelo' => 'x10',
+            'fecha_robo' => '2021-09-05',
+            'estatus' => 'Robado',
+            'correo' => 'pedro@gmail.com',
+            'user_id' => $user->id
+        ]);
+
+        // Envía una solicitud DELETE para eliminar el registro
+        $response = $this->actingAs($user)
+                        ->delete(route('autosrobados.destroy', $registro->id));
+
+        // Asegura que la eliminación se haya realizado correctamente en la base de datos
+        $this->assertSoftDeleted('autosrobados', [
+            'id' => $registro->id,
+            'marca' => 'Mazda',
+            'modelo' => 'x10',
+            'fecha_robo' => '2021-09-05',
+            'estatus' => 'Robado',
+            'correo' => 'pedro@gmail.com',
+            'user_id' => $user->id
+
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertRedirect(route('autosrobados.index'));
+        
+        
     }
 
 
