@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Puntos considerados como esxtras.
+## Puntos considerados como extras.
 
 - [Se agregó el apartado de actualización de las imágenes que el usuario pública.]
 - [Se agregó la verificación del correo del usuario que se registra al sistema.]
